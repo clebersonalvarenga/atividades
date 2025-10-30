@@ -3,7 +3,7 @@ from tkinter import messagebox, ttk
 import json
 import os
 
-# ---------------- CLASSES ---------------- #
+# ---------------- CLASSES ---------------- 
 class Livro:
     def __init__(self, titulo, autor, disponivel=True):
         self.__titulo = titulo.strip().title()
@@ -38,7 +38,7 @@ class Livro:
             "tipo": "Livro"
         }
 
-    # Polimorfismo
+    
     def exibir_informacoes(self):
         return (self.__titulo, self.__autor, "Sim" if self.__disponivel else "Não", "Livro")
 
@@ -63,7 +63,7 @@ class LivroDigital(Livro):
         return (titulo, autor, disponivel, "Digital")
 
 
-# ---------------- CLASSE BIBLIOTECA ---------------- #
+
 class Biblioteca:
     def __init__(self, arquivo="biblioteca.json"):
         self.__arquivo = arquivo
@@ -116,7 +116,7 @@ class Biblioteca:
             messagebox.showerror("Erro ao carregar", str(e))
 
 
-# ---------------- INTERFACE ---------------- #
+# ---------------- INTERFACE ---------------- 
 biblioteca = Biblioteca()
 
 def abrir_janela_principal(root):
@@ -129,7 +129,7 @@ def abrir_janela_principal(root):
 
     tk.Label(frame, text="Biblioteca Digital", font=("Helvetica", 22, "bold"), bg="#f2f2f2").pack(pady=20)
 
-    # Inputs
+    
     frame_inputs = tk.Frame(frame, bg="#f2f2f2")
     frame_inputs.pack(pady=10, fill="x")
 
@@ -147,7 +147,7 @@ def abrir_janela_principal(root):
 
     frame_inputs.grid_columnconfigure(1, weight=1)
 
-    # Treeview
+    
     quadro_listagem = tk.Frame(frame, bg="#f2f2f2")
     quadro_listagem.pack(pady=5, fill="both", expand=True)
     colunas = ("Título", "Autor", "Disponível", "Tipo")
@@ -160,7 +160,7 @@ def abrir_janela_principal(root):
     tree.configure(yscroll=vsb.set)
     vsb.pack(side="right", fill="y")
 
-    # Funções
+
     def atualizar_tree():
         for i in tree.get_children():
             tree.delete(i)
@@ -215,7 +215,7 @@ def abrir_janela_principal(root):
             atualizar_tree()
             messagebox.showinfo("Removido", f"Livro '{livro.get_titulo()}' removido!")
 
-    # Botões
+    
     botoes = tk.Frame(frame, bg="#f2f2f2")
     botoes.pack(pady=8)
     tk.Button(botoes, text="Cadastrar", command=adicionar_livro, bg="#3a7bd5", fg="white", width=12).grid(row=0, column=0, padx=5)
@@ -226,7 +226,7 @@ def abrir_janela_principal(root):
 
     atualizar_tree()
 
-# ---------------- TELA INICIAL ---------------- #
+
 root = tk.Tk()
 root.title("Bookish Bliss")
 root.state("zoomed")
